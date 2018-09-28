@@ -1,10 +1,11 @@
 var express = require('express');
 var bodyparser = require('body-parser');
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 var cors = require('cors'); 
 const mongoose = require('mongoose');
 
+ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://admin:mgourav3010@ds115613.mlab.com:15613/myportfolio',{
   useNewUrlParser: true
 });
@@ -47,13 +48,13 @@ app.post('/gourav',function(req, res){
     r = {reponse:name}
     const instance = new contact(req.body); //create an instance of model
     instance.save()
-    .then((res)=>{
+    .then((doc)=>{
       console.log("response received");
-      res.send(res)
+       res.send(doc)
     })
     .catch((err)=>{
       console.log("error occured");
-      res.status(400).send(err)
+       res.status(400).send(err)
     });
 })
 
