@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyparser = require('body-parser');
 var app = express();
+var port = process.env.PORT || 3000;
 var cors = require('cors'); 
 const mongoose = require('mongoose');
 
@@ -56,6 +57,6 @@ app.post('/gourav',function(req, res){
     });
 })
 
-console.log("listning on port 3000");
+console.log("listning on port",port);
 
-app.listen(3000);
+app.listen(port);
